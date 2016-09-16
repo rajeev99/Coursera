@@ -1,26 +1,25 @@
-
-makeCacheMatrix <- function(x = matrix()) {
-  m<-NULL
-  set<-function(y){
-  x<<-y
-  m<<-NULL
+makeCacheMatrix <- function(m = matrix(NA,2,2)){
+  r <<- matrix(NA,2,2)
+set <- function(y){
+  m <<- y
+  r <<- matrix(NA,2,2)
 }
-get<-function() x
-setmatrix<-function(solve) m<<- solve
-getmatrix<-function() m
-list(set=set, get=get,
-   setmatrix=setmatrix,
-   getmatrix=getmatrix)
+get <- function() m
+setrev <- function(solv) r <<- solv
+getrev <- function() r
+list(set = set, get = get,
+     setrev = setrev,
+     getrev = getrev)
 }
 
-cacheSolve <- function(x=matrix(), ...) {
-    m<-x$getmatrix()
-    if(!is.null(m)){
-      message("getting cached data")
-      return(m)
-    }
-    datos<-x$get()
-    m<-solve(datos, ...)
-    x$setmatrix(m)
-    m
+cacheSolve <- function(m,...){
+  r <- m$getrev()
+  if(!all(is.na(r))) {
+    message("getting cached data")
+    return(r)
+  }  
+  data <- m$get()
+  r <- solve(data, ...)
+  m$setrev(r)
+  r
 }

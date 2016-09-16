@@ -1,3 +1,5 @@
+#Rajeev Agrawal
+#The function below creates cache for the matrix
 
 makeCacheMatrix <- function(x = matrix()) {
   m<-NULL
@@ -13,6 +15,7 @@ list(set=set, get=get,
    getmatrix=getmatrix)
 }
 
+#The function below calls makeCacheMatrix send sets the value fot cache.
 cacheSolve <- function(x=matrix(), ...) {
     m<-x$getmatrix()
     if(!is.null(m)){
